@@ -78,13 +78,13 @@ class Edit extends Component {
                 <input type="text" className="form-control" name="title" value={this.state.title} onChange={this.onChange} placeholder="Title" />
               </div>
               <div className="form-group">
-                <label for="description">Description:</label>
+                <label for="description">Link:</label>
                 <input type="text" className="form-control" name="description" value={this.state.description} onChange={this.onChange} placeholder="Description" />
               </div>
-              <div className="form-group">
+              {/* <div className="form-group">
                 <label for="author">Link:</label>
                 <input type="text" className="form-control" name="author" value={this.state.link} onChange={this.onChange} placeholder="Link" />
-              </div>
+              </div> */}
               <button type="submit" className="btn btn-success">Submit</button>
             </form>
           </div>

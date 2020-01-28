@@ -49,7 +49,6 @@ class App extends Component {
               <thead>
                 <tr>
                   <th>Title</th>
-                  <th>Description</th>
                   <th>Link</th>
                 </tr>
               </thead>
@@ -58,7 +57,6 @@ class App extends Component {
                   <tr key={board.description}>
                     <td><Link to={`/show/${board.key}`}>{board.title}</Link></td>
                     <td>{board.description}</td>
-                    <td><a>{board.link}</a></td>
                   </tr>
                 )}
               </tbody>

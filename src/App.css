@@ -42,3 +42,12 @@
   text-align: center;
   padding: 10px;
 }
+
+.card-deck {
+  padding: 20px;
+}
+
+.add-link {
+  text-align: center;
+  padding: 30px;
+}

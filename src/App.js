@@ -16,13 +16,14 @@ class App extends Component {
   onCollectionUpdate = (querySnapshot) => {
     const boards = [];
     querySnapshot.forEach((doc) => {
-      const { title, description, link } = doc.data();
+      const { title, description, link, topic } = doc.data();
       boards.push({
         key: doc.id,
         doc, // DocumentSnapshot
         title,
         description,
         link,
+        topic
       });
     });
     this.setState({
@@ -35,35 +36,27 @@ class App extends Component {
   }
 
   render() {
+    const topicsSet = new Set(this.state.boards.map(board => board.topic));
+    const topicDetails = [...topicsSet];
     return (
-      <div className="container">
-        <div className="panel panel-default">
-          <div className="panel-heading">
-            <h3 className="panel-title">
-              Tech Links
-            </h3>
-          </div>
-          <div className="panel-body">
-            <h4><Link to="/create">Add Tech Link</Link></h4>
-            <table className="table table-stripe">
-              <thead>
-                <tr>
-                  <th>Title</th>
-                  <th>Link</th>
-                </tr>
-              </thead>
-              <tbody>
-                {this.state.boards.map(board =>
-                  <tr key={board.description}>
-                    <td><Link to={`/show/${board.key}`}>{board.title}</Link></td>
-                    <td><a href={board.description}>{board.description}</a></td>
-                  </tr>
-                )}
-              </tbody>
-            </table>
-          </div>
+      <>
+        <div className="card-deck">
+          {
+            topicDetails.map((topic) => {
+              return (
+                <div className="card bg-warning" key={topic}>
+                  <Link to={`/topic/${topic}`}>
+                    <div className="card-body text-center">
+                      <p className="card-text">{topic.toUpperCase()}</p>
+                    </div>
+                  </Link>
+                </div>
+              )
+            })
+          }
         </div>
-      </div>
+        <h4 className="add-link"><Link to="/create">Add Tech Link</Link></h4>
+      </>
     );
   }
 }

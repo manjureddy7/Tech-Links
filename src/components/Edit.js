@@ -10,7 +10,8 @@ class Edit extends Component {
       key: '',
       title: '',
       description: '',
-      link: ''
+      link: '',
+      topic: ''
     };
   }
 
@@ -23,7 +24,8 @@ class Edit extends Component {
           key: doc.id,
           title: board.title,
           description: board.description,
-          link: board.link
+          link: board.link,
+          topic: board.topic
         });
       } else {
         console.log("No such document!");
@@ -40,19 +42,21 @@ class Edit extends Component {
   onSubmit = (e) => {
     e.preventDefault();
 
-    const { title, description, link } = this.state;
+    const { title, description, link, topic } = this.state;
 
     const updateRef = firebase.firestore().collection('boards').doc(this.state.key);
     updateRef.set({
       title,
       description,
-      link
+      link,
+      topic
     }).then((docRef) => {
       this.setState({
         key: '',
         title: '',
         description: '',
-        link: ''
+        link: '',
+        topic: ''
       });
       this.props.history.push("/show/" + this.props.match.params.id)
     })
@@ -81,10 +85,10 @@ class Edit extends Component {
                 <label for="description">Link:</label>
                 <input type="text" className="form-control" name="description" value={this.state.description} onChange={this.onChange} placeholder="Description" />
               </div>
-              {/* <div className="form-group">
-                <label for="author">Link:</label>
-                <input type="text" className="form-control" name="author" value={this.state.link} onChange={this.onChange} placeholder="Link" />
-              </div> */}
+              <div className="form-group">
+                <label for="topic">Topic:</label>
+                <input type="text" className="form-control" name="topic" value={this.state.topic} onChange={this.onChange} placeholder="Topic" />
+              </div>
               <button type="submit" className="btn btn-success">Submit</button>
             </form>
           </div>

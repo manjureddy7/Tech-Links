@@ -8,6 +8,7 @@ import * as serviceWorker from './serviceWorker';
 import Edit from './components/Edit';
 import Create from './components/Create';
 import Show from './components/Show';
+import Topics from './components/Topics';
 
 ReactDOM.render(
   <Router>
@@ -16,6 +17,7 @@ ReactDOM.render(
       <Route path='/edit/:id' component={Edit} />
       <Route path='/create' component={Create} />
       <Route path='/show/:id' component={Show} />
+      <Route path='/topic/:item' component={Topics} />
     </div>
   </Router>,
   document.getElementById('root')

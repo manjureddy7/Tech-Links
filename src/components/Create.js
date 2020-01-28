@@ -22,17 +22,19 @@ class Create extends Component {
   onSubmit = (e) => {
     e.preventDefault();
 
-    const { title, description, link } = this.state;
+    const { title, description, link, topic } = this.state;
 
     this.ref.add({
       title,
       description,
-      link
+      link,
+      topic
     }).then((docRef) => {
       this.setState({
         title: '',
         description: '',
-        link: ''
+        link: '',
+        topic: ''
       });
       this.props.history.push("/")
     })
@@ -42,7 +44,7 @@ class Create extends Component {
   }
 
   render() {
-    const { title, description, link } = this.state;
+    const { title, description, topic } = this.state;
     return (
       <div className="container">
         <div className="panel panel-default">
@@ -62,10 +64,10 @@ class Create extends Component {
                 <label htmlFor="description">Link:</label>
                 <textarea className="form-control" name="description" onChange={this.onChange} placeholder="Description" cols="80" rows="3">{description}</textarea>
               </div>
-              {/* <div className="form-group">
-                <label htmlFor="author">Link:</label>
-                <input type="text" className="form-control" name="author" value={link} onChange={this.onChange} placeholder="Link" />
-              </div> */}
+              <div className="form-group">
+                <label htmlFor="topic">Topic:</label>
+                <input type="text" className="form-control" name="topic" value={topic} onChange={this.onChange} placeholder="topic" />
+              </div>
               <button type="submit" className="btn btn-success">Submit</button>
             </form>
           </div>

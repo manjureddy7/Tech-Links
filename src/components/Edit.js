@@ -10,7 +10,7 @@ class Edit extends Component {
       key: '',
       title: '',
       description: '',
-      author: ''
+      link: ''
     };
   }
 
@@ -23,7 +23,7 @@ class Edit extends Component {
           key: doc.id,
           title: board.title,
           description: board.description,
-          author: board.author
+          link: board.link
         });
       } else {
         console.log("No such document!");
@@ -40,19 +40,19 @@ class Edit extends Component {
   onSubmit = (e) => {
     e.preventDefault();
 
-    const { title, description, author } = this.state;
+    const { title, description, link } = this.state;
 
     const updateRef = firebase.firestore().collection('boards').doc(this.state.key);
     updateRef.set({
       title,
       description,
-      author
+      link
     }).then((docRef) => {
       this.setState({
         key: '',
         title: '',
         description: '',
-        author: ''
+        link: ''
       });
       this.props.history.push("/show/" + this.props.match.params.id)
     })
@@ -82,8 +82,8 @@ class Edit extends Component {
                 <input type="text" className="form-control" name="description" value={this.state.description} onChange={this.onChange} placeholder="Description" />
               </div>
               <div className="form-group">
-                <label for="author">Author:</label>
-                <input type="text" className="form-control" name="author" value={this.state.author} onChange={this.onChange} placeholder="Author" />
+                <label for="author">Link:</label>
+                <input type="text" className="form-control" name="author" value={this.state.link} onChange={this.onChange} placeholder="Link" />
               </div>
               <button type="submit" className="btn btn-success">Submit</button>
             </form>

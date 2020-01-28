@@ -41,7 +41,7 @@ class Show extends Component {
       <div className="container">
         <div className="panel panel-default">
           <div className="panel-heading">
-            <h4><Link to="/">Board List</Link></h4>
+            <h4><Link to="/">Tech Link details</Link></h4>
             <h3 className="panel-title">
               {this.state.board.title}
             </h3>

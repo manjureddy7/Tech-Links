@@ -60,7 +60,7 @@ class Topics extends Component {
                   {currentTopics.map(board =>
                     <tr key={board.description}>
                       <td><Link to={`/show/${board.key}`}>{board.title}</Link></td>
-                      <td><a href={board.description}>{board.description}</a></td>
+                      <td><a href={board.description} target="_blank">{board.description}</a></td>
                     </tr>
                   )}
                 </tbody>

@@ -40,12 +40,12 @@ class Topics extends Component {
     console.log("CURRENT TOPICS ARE", currentTopics)
     return (
       <>
-        <h4><Link to="/">/back</Link></h4>
         <div className="container">
           <div className="panel panel-default">
             <div className="panel-heading">
+
               <h3 className="panel-title">
-                Tech Links
+                <span style={{ padding: '20px' }}><Link to="/"><i className='fas fa-home' style={{ color: 'black' }}></i></Link></span> {this.props.match.params.item.toUpperCase()} Tech Links
             </h3>
             </div>
             <div className="panel-body">

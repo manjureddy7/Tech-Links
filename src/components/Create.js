@@ -54,7 +54,7 @@ class Create extends Component {
             </h3>
           </div>
           <div className="panel-body">
-            <h4><Link to="/" >Return to Tech-List</Link></h4>
+            <h4 style={{ textAlign: 'left' }}><Link to="/"><i className='fas fa-home' style={{ color: 'black' }}></i></Link></h4>
             <form onSubmit={this.onSubmit}>
               <div className="form-group">
                 <label htmlFor="title">Title:</label>

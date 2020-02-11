@@ -9,7 +9,11 @@ class App extends Component {
     this.ref = firebase.firestore().collection('boards');
     this.unsubscribe = null;
     this.state = {
-      boards: []
+      boards: [],
+      user: {
+        username: '',
+        password: ''
+      }
     };
   }
 
@@ -42,21 +46,38 @@ class App extends Component {
       <>
         <header className="header-section">
           Web Development,Chewed Up
-      </header>
-        <div className="card-deck">
-          {
-            topicDetails.map((topic) => {
-              return (
-                <div className="card bg-warning" key={topic}>
-                  <Link to={`/topic/${topic}`}>
-                    <div className="card-body text-center">
-                      <p className="card-text">{topic.toUpperCase()}</p>
-                    </div>
-                  </Link>
-                </div>
-              )
-            })
-          }
+        </header>
+        <div className="login-form">
+          <form>
+            <div className="username-section">
+              <label className="username-section">Username:</label>
+              <input type="text" />
+            </div>
+            <div className="password-section">
+              <label className="username-section">Password:</label>
+              <input type="password" />
+            </div>
+            <div className="login-button">
+              <button className="btn btn-primary">Login</button>
+            </div>
+          </form>
+        </div>
+        <div>
+          <div className="card-deck">
+            {
+              topicDetails.map((topic) => {
+                return (
+                  <div className="card bg-warning" key={topic}>
+                    <Link to={`/topic/${topic}`}>
+                      <div className="card-body text-center">
+                        <p className="card-text">{topic.toUpperCase()}</p>
+                      </div>
+                    </Link>
+                  </div>
+                )
+              })
+            }
+          </div>
         </div>
         <h4 className="add-link"><Link to="/create">Add Tech Link</Link></h4>
       </>

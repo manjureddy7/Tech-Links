@@ -11,22 +11,25 @@ export const SignIn = (props) => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    // firebase.doSignInWithEmailAndPassword(username, password).then(() => {
-    //   console.log("success")
-    // }).catch(() => console.log("faaaaaillllll"))
+    firebase.auth().signInWithEmailAndPassword(username, password).then(() => {
+      console.log("success");
+      props.isLoginSuccess(true);
+    }).catch(() => {
+      props.isLoginSuccess(false);
+      setErrorMsg(`Sorry Buddy! I can't let you log in.`)
+    })
     setPassword('');
     setUsername('');
-    setErrorMsg(`Sorry Buddy! I can't let you log in.`)
   }
 
   return (
     <div className="login-form">
       <form onSubmit={handleLogin}>
-        <div className="username-section">
+        <div className="username-section form-group">
           <label className="username-section">Email:</label>
           <input type="text" value={username} onChange={e => setUsername(e.target.value)} />
         </div>
-        <div className="password-section">
+        <div className="password-section form-group">
           <label className="username-section">Password:</label>
           <input type="password" value={password} onChange={e => setPassword(e.target.value)} />
         </div>

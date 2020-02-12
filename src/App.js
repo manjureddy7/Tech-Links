@@ -35,8 +35,6 @@ class App extends Component {
 
   componentDidMount() {
     this.unsubscribe = this.ref.onSnapshot(this.onCollectionUpdate);
-    const isAuthorized = localStorage.getItem('authorize');
-    isAuthorized ? this.setState({ isLogin: true }) : this.setState({ isLogin: false });
   }
 
   handleLogin = (boolean) => {
@@ -44,11 +42,8 @@ class App extends Component {
   }
 
   logoutUser = () => {
-    const isAuthorized = localStorage.getItem('authorize');
-    if (isAuthorized) {
-      localStorage.removeItem('authorize');
-      this.setState({ isLogin: false });
-    }
+    firebase.auth().signOut();
+    this.setState({ isLogin: false })
   }
 
   render() {
@@ -59,29 +54,29 @@ class App extends Component {
         <header className="header-section">
           Web Development,Chewed Up
         </header>
-        {/* {!this.state.isLogin ? <SignIn isLoginSuccess={this.handleLogin} /> : */}
-        <div>
-          {/* <div className="logout-button">
-            <button onClick={this.logoutUser} className="btn btn-danger">Logout</button>
-          </div> */}
-          <div className="card-deck">
-            {
-              topicDetails.map((topic) => {
-                return (
-                  <div className="card bg-warning" key={topic}>
-                    <Link to={`/topic/${topic}`}>
-                      <div className="card-body text-center">
-                        <p className="card-text">{topic.toUpperCase()}</p>
-                      </div>
-                    </Link>
-                  </div>
-                )
-              })
-            }
+        {!this.state.isLogin ? <SignIn isLoginSuccess={this.handleLogin} /> :
+          <div>
+            <div className="logout-button">
+              <button onClick={this.logoutUser} className="btn btn-danger">Logout</button>
+            </div>
+            <div className="card-deck">
+              {
+                topicDetails.map((topic) => {
+                  return (
+                    <div className="card bg-warning" key={topic}>
+                      <Link to={`/topic/${topic}`}>
+                        <div className="card-body text-center">
+                          <p className="card-text">{topic.toUpperCase()}</p>
+                        </div>
+                      </Link>
+                    </div>
+                  )
+                })
+              }
+            </div>
+            <h4 className="add-link"><Link to="/create">Add Tech Link</Link></h4>
           </div>
-          <h4 className="add-link"><Link to="/create">Add Tech Link</Link></h4>
-        </div>
-        {/* } */}
+        }
       </>
     );
   }

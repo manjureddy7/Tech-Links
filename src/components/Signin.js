@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+import firebase from '../Firebase';
+
 export const SignIn = (props) => {
 
   const [username, setUsername] = useState('');
@@ -9,10 +11,9 @@ export const SignIn = (props) => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    if (username === process.env.REACT_APP_USERNAME && password === process.env.REACT_APP_PASSWORD) {
-      localStorage.setItem('authorize', true);
-      props.isLoginSuccess(true)
-    }
+    // firebase.doSignInWithEmailAndPassword(username, password).then(() => {
+    //   console.log("success")
+    // }).catch(() => console.log("faaaaaillllll"))
     setPassword('');
     setUsername('');
     setErrorMsg(`Sorry Buddy! I can't let you log in.`)
@@ -22,7 +23,7 @@ export const SignIn = (props) => {
     <div className="login-form">
       <form onSubmit={handleLogin}>
         <div className="username-section">
-          <label className="username-section">Username:</label>
+          <label className="username-section">Email:</label>
           <input type="text" value={username} onChange={e => setUsername(e.target.value)} />
         </div>
         <div className="password-section">

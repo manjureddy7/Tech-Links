@@ -37,7 +37,6 @@ class Topics extends Component {
   render() {
     const topic = this.props.match.params.item;
     const currentTopics = this.state.boards.filter(board => board.topic === topic);
-    console.log("CURRENT TOPICS ARE", currentTopics)
     return (
       <>
         <div className="container">

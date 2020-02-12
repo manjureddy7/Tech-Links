@@ -10,7 +10,7 @@ export const SignIn = (props) => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    if (username === USER_DETAILS.username && password === USER_DETAILS.password) {
+    if (username === process.env.REACT_APP_USERNAME && password === process.env.REACT_APP_PASSWORD) {
       localStorage.setItem('authorize', true);
       props.isLoginSuccess(true)
     }

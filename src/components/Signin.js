@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { USER_DETAILS } from '../constants/userDetails';
 
 export const SignIn = (props) => {
 

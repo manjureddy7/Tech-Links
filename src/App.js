@@ -48,7 +48,7 @@ class App extends Component {
   logoutUser = () => {
     firebase.auth().signOut();
     this.setState({ isLogin: false });
-    localStorage.removeItem('isLogged')
+    localStorage.removeItem('isLogged');
   }
 
   render() {

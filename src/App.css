@@ -58,6 +58,16 @@
   text-align: center;
 }
 
+.logout-button {
+  
+}
+
+.error-msg {
+  padding: 20px;
+  color: #bc3845;
+  text-align: right;
+}
+
 .login-form {
   display: flex;
   justify-content: center;

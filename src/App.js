@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './App.css';
 import firebase from './Firebase';
+import { SignIn } from './components/Signin';
 
 class App extends Component {
   constructor(props) {
@@ -10,10 +11,7 @@ class App extends Component {
     this.unsubscribe = null;
     this.state = {
       boards: [],
-      user: {
-        username: '',
-        password: ''
-      }
+      isLogin: false
     };
   }
 
@@ -37,6 +35,20 @@ class App extends Component {
 
   componentDidMount() {
     this.unsubscribe = this.ref.onSnapshot(this.onCollectionUpdate);
+    const isAuthorized = localStorage.getItem('authorize');
+    isAuthorized ? this.setState({ isLogin: true }) : this.setState({ isLogin: false });
+  }
+
+  handleLogin = (boolean) => {
+    this.setState({ isLogin: boolean })
+  }
+
+  logoutUser = () => {
+    const isAuthorized = localStorage.getItem('authorize');
+    if (isAuthorized) {
+      localStorage.removeItem('authorize');
+      this.setState({ isLogin: false });
+    }
   }
 
   render() {
@@ -47,39 +59,28 @@ class App extends Component {
         <header className="header-section">
           Web Development,Chewed Up
         </header>
-        <div className="login-form">
-          <form>
-            <div className="username-section">
-              <label className="username-section">Username:</label>
-              <input type="text" />
+        {!this.state.isLogin ? <SignIn isLoginSuccess={this.handleLogin} /> :
+          <div>
+            <div className="logout-button">
+              <button onClick={this.logoutUser} className="btn btn-danger">Logout</button>
             </div>
-            <div className="password-section">
-              <label className="username-section">Password:</label>
-              <input type="password" />
+            <div className="card-deck">
+              {
+                topicDetails.map((topic) => {
+                  return (
+                    <div className="card bg-warning" key={topic}>
+                      <Link to={`/topic/${topic}`}>
+                        <div className="card-body text-center">
+                          <p className="card-text">{topic.toUpperCase()}</p>
+                        </div>
+                      </Link>
+                    </div>
+                  )
+                })
+              }
             </div>
-            <div className="login-button">
-              <button className="btn btn-primary">Login</button>
-            </div>
-          </form>
-        </div>
-        <div>
-          <div className="card-deck">
-            {
-              topicDetails.map((topic) => {
-                return (
-                  <div className="card bg-warning" key={topic}>
-                    <Link to={`/topic/${topic}`}>
-                      <div className="card-body text-center">
-                        <p className="card-text">{topic.toUpperCase()}</p>
-                      </div>
-                    </Link>
-                  </div>
-                )
-              })
-            }
-          </div>
-        </div>
-        <h4 className="add-link"><Link to="/create">Add Tech Link</Link></h4>
+            <h4 className="add-link"><Link to="/create">Add Tech Link</Link></h4>
+          </div>}
       </>
     );
   }

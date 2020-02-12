@@ -35,6 +35,10 @@ class App extends Component {
 
   componentDidMount() {
     this.unsubscribe = this.ref.onSnapshot(this.onCollectionUpdate);
+    const isLogedIn = localStorage.getItem('isLogged');
+    if (isLogedIn) {
+      this.setState({ isLogin: true });
+    }
   }
 
   handleLogin = (boolean) => {
@@ -43,7 +47,8 @@ class App extends Component {
 
   logoutUser = () => {
     firebase.auth().signOut();
-    this.setState({ isLogin: false })
+    this.setState({ isLogin: false });
+    localStorage.removeItem('isLogged')
   }
 
   render() {

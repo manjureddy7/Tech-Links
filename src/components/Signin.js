@@ -12,10 +12,9 @@ export const SignIn = (props) => {
   const handleLogin = (e) => {
     e.preventDefault();
     firebase.auth().signInWithEmailAndPassword(username, password).then(() => {
-      console.log("success");
+      localStorage.setItem('isLogged', true)
       props.isLoginSuccess(true);
     }).catch(() => {
-      props.isLoginSuccess(false);
       setErrorMsg(`Sorry Buddy! I can't let you log in.`)
     })
     setPassword('');

@@ -60,10 +60,6 @@
   text-align: center;
 }
 
-.logout-button {
-  
-}
-
 .error-msg {
   padding: 20px;
   color: #bc3845;
@@ -87,4 +83,8 @@
 .password-section {
   padding: 10px;
   margin-left: -26px;
+}
+
+.table {
+  margin-bottom: 40px;
 }

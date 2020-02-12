@@ -61,7 +61,7 @@ class App extends Component {
         </header>
         {!this.state.isLogin ? <SignIn isLoginSuccess={this.handleLogin} /> :
           <div>
-            <div className="logout-button">
+            <div>
               <button onClick={this.logoutUser} className="btn btn-danger">Logout</button>
             </div>
             <div className="card-deck">

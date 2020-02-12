@@ -8,7 +8,6 @@
 
 /.env
 
-/src/Firebase.js
 
 # testing
 /coverage

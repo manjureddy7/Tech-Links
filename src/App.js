@@ -64,11 +64,11 @@ class App extends Component {
             <div>
               <button onClick={this.logoutUser} className="btn btn-danger">Logout</button>
             </div>
-            <div className="card-deck">
+            <div className="list-group list-group-horizontal align-items-stretch flex-wrap">
               {
                 topicDetails.map((topic) => {
                   return (
-                    <div className="card bg-warning" key={topic}>
+                    <div className="list-group-item bg-warning" key={topic}>
                       <Link to={`/topic/${topic}`}>
                         <div className="card-body text-center">
                           <p className="card-text">{topic.toUpperCase()}</p>
